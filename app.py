@@ -7,7 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///database.db'
 
 db=SQLAlchemy(app)
 
-class user(db.Model):
+class User(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     username=db.Column(db.String(80),unique=True)
     email=db.Column(db.String(80),unique=True)
@@ -16,7 +16,13 @@ class user(db.Model):
 
 
 @app.route("/")
-def hi():
+def home():
+
+    user1=User(username="Jamshid",email="t1@gmail.com")
+    user2=User(username="sherzod",email="t2@gmail.com")
+    db.session.add(user1)
+    db.session.add(user2)
+    db.session.commit()
 
     return "hello"
 
