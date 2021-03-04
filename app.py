@@ -35,6 +35,14 @@ def read():
     users=User.query.all()
     return f"{users[0].username}"
 
+@app.route("/delate")
 
+def delate():
+    users=User.query.all()
+
+    for usr in users:
+        db.session.delete(usr)
+        db.session.commit()
+    return "delate"
 if __name__=="__main__":
     app.run(debug=True)
