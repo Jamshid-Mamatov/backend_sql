@@ -12,6 +12,9 @@ class User(db.Model):
     username=db.Column(db.String(80),unique=True)
     email=db.Column(db.String(80),unique=True)
 
+    def __repr__(self) -> str:
+
+        return self
 
 
 
@@ -25,6 +28,13 @@ def home():
     db.session.commit()
 
     return "hello"
+
+@app.route("/read")
+def read():
+
+    users=User.query.all()
+    return f"{users[0].username}"
+
 
 if __name__=="__main__":
     app.run(debug=True)
